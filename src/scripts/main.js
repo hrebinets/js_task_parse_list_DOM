@@ -1,16 +1,15 @@
 'use strict';
 
 const people = [...document.querySelectorAll('li')];
+const toNumber = function (obj) {
+  return +obj.getAttribute('data-salary').replace(/[$,]/g, '');
+};
 
-function sortBySalary(arr) {
-  return arr.sort(
-    (person1, person2) =>
-      +person2.getAttribute('data-salary').replace(/[$,]/g, '') -
-      +person1.getAttribute('data-salary').replace(/[$,]/g, ''),
-  );
+function sortList(arr) {
+  return arr.sort((person1, person2) => toNumber(person1) - toNumber(person2));
 }
 
-function makeObj(arr) {
+function getEmployees(arr) {
   const arrPeople = [];
 
   for (const person of arr) {
@@ -26,6 +25,5 @@ function makeObj(arr) {
 
   return arrPeople;
 }
-
-sortBySalary(people);
-makeObj(people);
+sortList(people);
+getEmployees(people);
