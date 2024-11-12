@@ -3,13 +3,11 @@
 const people = [...document.querySelectorAll('li')];
 
 function sortBySalary(arr) {
-  const salaries = arr.map((person) => {
-    const salary = person.getAttribute('data-salary');
-
-    return +salary.replace(/[$,]/g, '');
-  });
-
-  return salaries.sort((person1, person2) => person2 - person1);
+  return arr.sort(
+    (person1, person2) =>
+      +person2.getAttribute('data-salary').replace(/[$,]/g, '') -
+      +person1.getAttribute('data-salary').replace(/[$,]/g, ''),
+  );
 }
 
 function makeObj(arr) {
